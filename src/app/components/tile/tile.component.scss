@@ -1,0 +1,26 @@
+.weather__wrap {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../../../assets/10844785.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  .weather__box {
+    background-color: #fef9ef;
+    padding: 50px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    .weather__temp {
+      font-size: 100px;
+    }
+    .weather__city {
+      font-size: 40px;
+    }
+    .weather__graphics {
+    }
+  }
+}

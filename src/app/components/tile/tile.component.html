@@ -1,0 +1,16 @@
+<div class="weather__wrap">
+  <div class="weather__box">
+    <div class="weather__info">
+
+      <div class="weather__temp">
+        {{weather.list[0].main.temp | roundTemp}}°
+      </div>
+      <div class="weather__city">
+        {{weather.city.name}}
+      </div>
+    </div>
+    <div class="weather__graphics">
+      <app-icon [code]="weather.list[0].weather[0].id"></app-icon>
+    </div>
+  </div>
+</div>

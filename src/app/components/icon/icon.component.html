@@ -1,0 +1,7 @@
+<i class="bi bi-cloud-lightning-rain-fill" *ngIf="code < 300"></i>
+<i class="bi bi-cloud-drizzle-fill" *ngIf="code >= 300 && code < 500"></i>
+<i class="bi bi-cloud-rain-heavy-fill" *ngIf="code >= 500 && code < 600"></i>
+<i class="bi bi-cloud-snow-fill" *ngIf="code >= 600 && code < 700"></i>
+<i class="bi bi-cloud-fog2-fill" *ngIf="code >= 700 && code < 800"></i>
+<i class="bi bi-sun-fill" *ngIf="code === 800"></i>
+<i class="bi bi-clouds-fill" *ngIf="code > 800"></i>
