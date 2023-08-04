@@ -1,20 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Weather } from '../interfaces/weather/weather.interface';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WeatherService {
-  weather$ = new BehaviorSubject({} as Weather)
+  weather$ = new BehaviorSubject<Weather | null>(null)
   weatherData = this.weather$.asObservable()
-  _city: string = 'genoa';
+  private _city: string = 'genoa';
 
   constructor() { }
 
-  set weather(val: Weather) {
-    this.weather$.next(val)
-  }
+  // set weather(val: Weather) {
+  //   this.weather$.next(val)
+  // }
+
+
 
   set city(val: string) {
     this._city = val;

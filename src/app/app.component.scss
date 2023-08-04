@@ -1,0 +1,5 @@
+@import "./styles/colors";
+* {
+  color: darken($cerulean, 15%);
+  box-sizing: border-box;
+}

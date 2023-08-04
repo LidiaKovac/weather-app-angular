@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Weather } from 'src/app/interfaces/weather/weather.interface';
+import { map, tap } from 'rxjs';
+import { List, Weather } from 'src/app/interfaces/weather/weather.interface';
 import { WeatherService } from 'src/app/services/weather.service';
 
 @Component({
@@ -8,12 +9,20 @@ import { WeatherService } from 'src/app/services/weather.service';
   styleUrls: ['./tile.component.scss']
 })
 export class TileComponent implements OnInit {
-  weather!: Weather
+  offset!: number
+  weather!: List
+  city!:string
   constructor(private weatherSrv: WeatherService) {
-    this.weatherSrv.weatherData.subscribe((data: Weather) => {
-      this.weather = data
+    this.weatherSrv.weatherData.pipe(map((weather) => {
+      if (weather && weather.list) {
+        return [weather.list[0], weather.city.name ]
+      } else return [weather?.list, weather?.city.name]
+    })).subscribe((data) => {
+      this.weather = data[0] as List
+      this.city = this.weatherSrv.city || data[1] as string
     })
   }
+
 
   ngOnInit(): void {
   }

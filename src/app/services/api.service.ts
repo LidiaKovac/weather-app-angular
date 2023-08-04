@@ -18,7 +18,7 @@ export class ApiService {
   coordsAPI: string = `http://api.openweathermap.org/geo/1.0/direct?q=${this.weatherSrv.city}&limit=1&appid=${this.key}`;
   constructor(private http: HttpClient, private weatherSrv: WeatherService) {
     //Vogliamo caricare una citta' di default al caricamento dell'app
-    this.loadWeather()
+    this.loadWeather().subscribe();
   }
 
   private setUrl() {
@@ -37,7 +37,6 @@ export class ApiService {
     this._lon = val;
   }
 
-
   private getCity() {
     return this.http.get<City[]>(this.coordsAPI);
   }
@@ -47,19 +46,27 @@ export class ApiService {
   }
 
   loadWeather(cityName: string = this.weatherSrv.city) {
-    this.weatherSrv.city = cityName
-    this.setCoordsUrl()
-    this.getCity().subscribe((cities: City[]) => {
-      console.log(cities);
-      this.lat = cities[0].lat;
-      this.lon = cities[0].lon;
-      this.weatherSrv.city = cities[0].local_names['it'];
-      //una volta caricata la citta', ricreiamo l'url
-      this.setUrl();
-      this.getWeather().subscribe((weather: Weather) => {
-        this.weatherSrv.weather = weather
-      });
-    });
+    this.weatherSrv.city = cityName;
+    this.setCoordsUrl();
+    return this.getCity()
+      .pipe(
+        map((cities: City[]) => {
+          console.log(cities);
+          this.lat = cities[0].lat;
+          this.lon = cities[0].lon;
+          this.weatherSrv.city = cities[0].local_names['it'];
+          //una volta caricata la citta', ricreiamo l'url
+          this.setUrl();
+        })
+      )
+      .pipe(
+        map(() => {
+          return this.getWeather().subscribe((weather: Weather) => {
+            console.log(weather);
 
+            this.weatherSrv.weather$.next(weather)
+          });
+        })
+      );
   }
 }
