@@ -1,0 +1,15 @@
+form {
+  backdrop-filter: blur(10px);
+  background-color: transparentize(darken(#d1dcf0, 10%), 0.8);
+  border: 5px solid darken(#d1dcf0, 10%);
+  border-radius: 50px;
+  padding: 50px;
+  min-height: 50vh;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+
+}

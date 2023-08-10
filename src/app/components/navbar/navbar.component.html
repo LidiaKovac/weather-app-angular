@@ -1,0 +1,7 @@
+<nav *ngIf="!isLogged">
+  <a routerLink="/login">Login</a>
+  <a routerLink="/register">Register</a>
+</nav>
+<nav *ngIf="isLogged">
+  <a (click)="logout()">Logout</a>
+</nav>

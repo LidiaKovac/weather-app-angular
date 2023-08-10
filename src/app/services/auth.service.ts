@@ -4,6 +4,8 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { tap, Observable } from "rxjs"
+import { Auth, User, lsAuth } from '../interfaces/user/user.interface';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -16,8 +18,8 @@ export class AuthService {
   url: string = environment.BE_URL;
   jwtSrv = new JwtHelperService();
 
-  constructor(private http: HttpClient) {
-
+  constructor(private http: HttpClient, private router:Router) {
+    this.verifyLogin()
   }
 
   login(cred: Auth) {
@@ -25,7 +27,7 @@ export class AuthService {
       .pipe(
         tap((res) => {
           if (res.accessToken) {
-            this.setLocalStorage("weather-login", res.accessToken)
+            this.setLocalStorage("weather-login", res)
             this.isLogged$.next(res.accessToken ? true : false)
             //routing here
           } else {
@@ -36,7 +38,7 @@ export class AuthService {
   }
 
   signup(cred: User) {
-    return this.http.post<User>(`${environment.BE_URL}signup`, cred)
+    return this.http.post<lsAuth | string>(`${environment.BE_URL}signup`, cred)
       .pipe(
         tap(() => {
           //show success message
@@ -47,31 +49,22 @@ export class AuthService {
 
 
   logout() {
-    localStorage.removeItem("user")
+    localStorage.removeItem("weather-login")
     this.isLogged$.next(false)
-    //route to login
-  }
-  currentLoggedUsed(): Observable<User[]> | undefined {
-    const dati = this.getLoginData
-    if (dati) {
-      const email = dati.user.email
-      return this.http.get<User[]>(`${environment.BE_URL}users?email=${email}`)
-    } else {
-      this.isLogged$.next(false)
-      return
-    }
+    this.router.navigate(["/login"])
   }
 
-  private get getLoginData() {
-    const ls = JSON.parse(localStorage.getItem("user")!) as lsAuth | null
+
+  get getLoginData():lsAuth | false {
+    const ls = JSON.parse(localStorage.getItem("weather-login")!) as lsAuth | null
     if (ls) return ls
     else return false
   }
 
   verifyLogin() {
     const data = this.getLoginData
-    if (data) {
-      const isExpired = this.jwtSrv.isTokenExpired(data.accessToken!)
+    if (data && data.accessToken) {
+      const isExpired = this.jwtSrv.isTokenExpired(data.accessToken)
       this.isLogged$.next(!isExpired)
     } else {
       this.isLogged$.next(false)

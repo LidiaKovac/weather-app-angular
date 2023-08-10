@@ -25,8 +25,8 @@ export class ApiService {
     this.url = `https://api.openweathermap.org/data/2.5/forecast?lat=${this._lat}&lon=${this._lon}&appid=${this.key}&units=metric`;
   }
 
-  private setCoordsUrl() {
-    this.coordsAPI = `http://api.openweathermap.org/geo/1.0/direct?q=${this.weatherSrv.city}&limit=1&appid=${this.key}`;
+  private setCoordsUrl(city: string) {
+    this.coordsAPI = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${this.key}`;
   }
 
   private set lat(val: number) {
@@ -46,15 +46,16 @@ export class ApiService {
   }
 
   loadWeather(cityName: string = this.weatherSrv.city) {
-    this.weatherSrv.city = cityName;
-    this.setCoordsUrl();
+    this.setCoordsUrl(cityName);
     return this.getCity()
       .pipe(
         map((cities: City[]) => {
           console.log(cities);
           this.lat = cities[0].lat;
           this.lon = cities[0].lon;
-          this.weatherSrv.city = cities[0].local_names['it'];
+          console.log(cities[0])
+          const local =
+          this.weatherSrv.city = cities[0].name;
           //una volta caricata la citta', ricreiamo l'url
           this.setUrl();
         })

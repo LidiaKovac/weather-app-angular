@@ -1,8 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap-icons/font/bootstrap-icons.css";
+@import "./app/styles/colors";
+@import "./app/styles/input";
+@import "./app/styles/button";
+@import "./app/styles/form";
 * {
   font-family: Helvetica, Arial, sans-serif;
 }
 body {
+  height: 100vh;
+
+  background-image: url("./assets/10844785.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  padding-block: 100px;
+
   margin: 0px;
+}
+* , * *  {
+  color: darken($cerulean, 15%);
+  box-sizing: border-box;
 }

@@ -1,16 +1,17 @@
-interface User {
+export interface User {
   name:     string
   password: string
   email:    string
   favs:     string[]
+  id?: number
 }
 
-interface Auth {
+export interface Auth {
   email: string
   password: string
 }
 
-interface lsAuth {
-  user: Auth
+export interface lsAuth {
+  user: User
   accessToken: string
 }

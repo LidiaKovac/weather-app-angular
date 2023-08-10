@@ -1,3 +1,23 @@
 {
-  "users": []
+  "users": [
+    {
+      "email": "student@student",
+      "password": "$2a$10$lLDzAM68suMDP9SGUkZ/a.gjYHBN7YETbOSDrCrrTZYsomIXYuk7i",
+      "name": "Lidia",
+      "favs": [],
+      "id": 1
+    },
+    {
+      "email": "student2@student",
+      "password": "$2a$10$RViTyqEWzHsfR20xhqe1o.lw6S0JcMQEEUpTvri1TisebY9nC.FEm",
+      "name": "Lidia",
+      "favs": [
+        "Inverness",
+        "Alba",
+        "Stockholm",
+        "Copenhagen"
+      ],
+      "id": 2
+    }
+  ]
 }

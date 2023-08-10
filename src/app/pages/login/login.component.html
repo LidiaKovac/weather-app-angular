@@ -1,0 +1,5 @@
+<form (submit)="login($event)" >
+  <input [(ngModel)]="cred.email" placeholder="Email" type="email" name="email" id="">
+  <input  [(ngModel)]="cred.password" placeholder="Password" type="password" name="password" id="">
+  <button>Login</button>
+</form>

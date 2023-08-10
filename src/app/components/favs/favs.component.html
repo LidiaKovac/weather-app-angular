@@ -1,0 +1,16 @@
+<div class="favs__list">
+  <h3>Favourites</h3>
+  <div class="favs__single" *ngFor="let city of favs">
+    {{city}}
+    <div class="favs__controls">
+      <span (click)="loadCity(city)">
+        <i class="bi bi-eye"></i>
+
+      </span>
+      <button *ngIf="favs.includes(city)" (click)="removeFavs(city)">
+        <i class="bi bi-suit-heart-fill"></i>
+
+      </button>
+    </div>
+  </div>
+</div>
