@@ -38,7 +38,7 @@ export class AuthService {
   }
 
   signup(cred: User) {
-    return this.http.post<lsAuth | string>(`${environment["BE_URL"]}signup`, cred)
+    return this.http.post<lsAuth | string>(`${environment["BE_URL"]}`, cred)
       .pipe(
         tap(() => {
           //show success message

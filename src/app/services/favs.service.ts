@@ -17,9 +17,9 @@ export class FavsService {
 
   getFavs(): Observable<User['favs']> {
     const {
-      user: { id },
+      user: { _id },
     } = this.auth.getLoginData as lsAuth;
-    return this.http.get<User>(environment["BE_URL"] + 'users/' + id).pipe(
+    return this.http.get<User>(environment["BE_URL"] + _id).pipe(
       map((res) => {
         this.favs$.next(res.favs)
         return res.favs;
@@ -28,22 +28,22 @@ export class FavsService {
   }
   addFav(city: string) {
     const {
-      user: { id },
+      user: { _id },
     } = this.auth.getLoginData as lsAuth;
 
     const currentFavs = this.favs$.value
-    return this.http.patch<User>(environment["BE_URL"] + 'users/' + id, {
+    return this.http.patch<User>(environment["BE_URL"] + _id, {
       favs: [...currentFavs, city],
     }
     ).pipe(tap(res => this.favs$.next(res.favs)))
   }
   removeFav(city: string) {
     const {
-      user: { id },
+      user: { _id },
     } = this.auth.getLoginData as lsAuth;
     const currentFavs = this.favs$.value
 
-    return this.http.patch<User>(environment["BE_URL"] + 'users/' + id, {
+    return this.http.patch<User>(environment["BE_URL"] + _id, {
       favs: currentFavs.filter((ct) => ct !== city),
     }).pipe(tap(res => this.favs$.next(res.favs)))
   }

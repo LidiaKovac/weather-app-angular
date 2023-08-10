@@ -3,7 +3,7 @@ export interface User {
   password: string
   email:    string
   favs:     string[]
-  id?: number
+  _id?: string
 }
 
 export interface Auth {
