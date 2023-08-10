@@ -19,7 +19,7 @@ export class FavsService {
     const {
       user: { id },
     } = this.auth.getLoginData as lsAuth;
-    return this.http.get<User>(environment.BE_URL + 'users/' + id).pipe(
+    return this.http.get<User>(environment["BE_URL"] + 'users/' + id).pipe(
       map((res) => {
         this.favs$.next(res.favs)
         return res.favs;
@@ -32,7 +32,7 @@ export class FavsService {
     } = this.auth.getLoginData as lsAuth;
 
     const currentFavs = this.favs$.value
-    return this.http.patch<User>(environment.BE_URL + 'users/' + id, {
+    return this.http.patch<User>(environment["BE_URL"] + 'users/' + id, {
       favs: [...currentFavs, city],
     }
     ).pipe(tap(res => this.favs$.next(res.favs)))
@@ -43,7 +43,7 @@ export class FavsService {
     } = this.auth.getLoginData as lsAuth;
     const currentFavs = this.favs$.value
 
-    return this.http.patch<User>(environment.BE_URL + 'users/' + id, {
+    return this.http.patch<User>(environment["BE_URL"] + 'users/' + id, {
       favs: currentFavs.filter((ct) => ct !== city),
     }).pipe(tap(res => this.favs$.next(res.favs)))
   }

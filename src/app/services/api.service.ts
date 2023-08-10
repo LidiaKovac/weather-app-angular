@@ -13,7 +13,7 @@ export class ApiService {
   _lon!: number;
 
   //api
-  private key: string = environment.API_KEY;
+  private key: string = environment["API_KEY"];
   url: string = `https://api.openweathermap.org/data/2.5/forecast?lat=${this._lat}&lon=${this._lon}&appid=${this.key}&units=metric`;
   coordsAPI: string = `http://api.openweathermap.org/geo/1.0/direct?q=${this.weatherSrv.city}&limit=1&appid=${this.key}`;
   constructor(private http: HttpClient, private weatherSrv: WeatherService) {

@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "concurrently \"npm run config && ng serve -o\" \"npm run backend\"",
+    "dev": "concurrently \"npm run config && ng serve -o\" \"npm run backend\"",
+    "start": "npm run config && ng build --configuration production",
     "build": "npm run config && ng build",
     "watch": "ng build --watch --configuration development",
     "backend": "json-server-auth --watch db.json --port 3000",
