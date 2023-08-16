@@ -23,7 +23,7 @@ export class AuthService {
   }
 
   login(cred: Auth) {
-    return this.http.post<lsAuth>(`${environment["BE_URL"]}login`, cred)
+    return this.http.post<lsAuth>(`${this.url}login`, cred)
       .pipe(
         tap((res) => {
           if (res.accessToken) {
@@ -38,7 +38,7 @@ export class AuthService {
   }
 
   signup(cred: User) {
-    return this.http.post<lsAuth | string>(`${environment["BE_URL"]}`, cred)
+    return this.http.post<lsAuth | string>(`${this.url}`, cred)
       .pipe(
         tap(() => {
           //show success message
