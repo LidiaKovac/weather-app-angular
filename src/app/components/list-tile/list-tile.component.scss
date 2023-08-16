@@ -1,0 +1,40 @@
+:host {
+  width: 30%;
+  .tile__list {
+    background-color: white;
+    padding-block: 40px;
+    padding-inline: 60px;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+    box-shadow: 5px 5px 10px 0px rgb(0, 0, 0, 0.08);
+    -webkit-box-shadow: 5px 5px 10px 0px rgb(0, 0, 0, 0.08);
+
+    h3 {
+      margin-top: 0px;
+    }
+    .tile__single {
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  :host {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 700px) {
+  :host {
+    width: 80%;
+    padding: 20px;
+  }
+}
+
+
+@media screen and (max-width: 400px) {
+  :host {
+    width: 90%;
+  }
+}

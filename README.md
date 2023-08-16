@@ -1,7 +1,17 @@
+# Weather App - Angular
+## Design
+
 ![design](https://imgur.com/fzDHpqE.png)
 
+## Branches: 
 
-# WeatherAppAngular
+- The master branch is the branch that uses json-server
+- The demo branch is the branch made for production, it uses my own API. 
+
+The functionalities are exactly the same, but the demo branch had been added to allow me to ship the app to production, which is not possible with json-server.
+
+## Angular README
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.11.
 

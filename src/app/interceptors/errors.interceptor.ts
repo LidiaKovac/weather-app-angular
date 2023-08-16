@@ -6,17 +6,18 @@ import {
   HttpInterceptor,
   HttpErrorResponse
 } from '@angular/common/http';
-import { Observable, catchError, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, throwError } from 'rxjs';
+import { ApiService } from '../services/api.service';
+import { ErrorsService } from '../services/errors.service';
 
 @Injectable()
 export class ErrorsInterceptor implements HttpInterceptor {
-
-  constructor() {}
+  constructor(private errorSrv:ErrorsService) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(catchError((error: HttpErrorResponse) => {
-      alert(error.message)
-      return throwError(()=> new Error(error.message))
-    }) )
+      this.errorSrv.throw(`Error! ${error.status} - ${error.statusText}`, 2000)
+      return throwError(() => new Error(error.message))
+    }))
   }
 }

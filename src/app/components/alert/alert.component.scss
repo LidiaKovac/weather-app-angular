@@ -1,0 +1,14 @@
+:host {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+
+  .alert__wrap {
+    width: 200px;
+    padding: 20px;
+    background-color: rgb(255, 139, 158);
+    white-space: break-spaces;
+    color: white !important;
+    border-radius: 20px;
+  }
+}

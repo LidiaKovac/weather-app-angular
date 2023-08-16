@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FavsComponent } from './favs.component';
+import { SingleCityLiComponent } from './single-city-li.component';
 
-describe('FavsComponent', () => {
-  let component: FavsComponent;
-  let fixture: ComponentFixture<FavsComponent>;
+describe('SingleCityLiComponent', () => {
+  let component: SingleCityLiComponent;
+  let fixture: ComponentFixture<SingleCityLiComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FavsComponent ]
+      declarations: [ SingleCityLiComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FavsComponent);
+    fixture = TestBed.createComponent(SingleCityLiComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

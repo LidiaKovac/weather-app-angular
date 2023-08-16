@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { City } from '../interfaces/weather/city.interface';
 import { Weather } from '../interfaces/weather/weather.interface';
-import { mergeMap, map } from 'rxjs';
+import { mergeMap, map, BehaviorSubject } from 'rxjs';
 import { WeatherService } from './weather.service';
 @Injectable({
   providedIn: 'root',
@@ -55,7 +55,7 @@ export class ApiService {
           this.lon = cities[0].lon;
           console.log(cities[0])
           const local =
-          this.weatherSrv.city = cities[0].name;
+            this.weatherSrv.city = cities[0].name;
           //una volta caricata la citta', ricreiamo l'url
           this.setUrl();
         })
@@ -70,4 +70,5 @@ export class ApiService {
         })
       );
   }
+
 }

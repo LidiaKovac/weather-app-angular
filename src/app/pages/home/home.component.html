@@ -1,7 +1,6 @@
 <app-input></app-input>
 
 <app-tile></app-tile>
-<div class="cities">
-  <app-recent></app-recent>
-  <app-favs></app-favs>
-</div>
+<app-list-tile [data]="recent" [title]='"Recent"'></app-list-tile>
+<app-list-tile [data]="favs" [title]='"Favourites"'></app-list-tile>
+

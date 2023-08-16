@@ -10,13 +10,14 @@ import { ConvertDtPipe } from './pipes/convert-dt.pipe';
 import { FormsModule } from '@angular/forms';
 import { WeatherClassPipe } from './pipes/weather-class.pipe';
 import { InputComponent } from './components/input/input.component';
-import { RecentComponent } from './components/recent/recent.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { RegisterComponent } from './pages/register/register.component';
-import { FavsComponent } from './components/favs/favs.component';
 import { ErrorsInterceptor } from './interceptors/errors.interceptor';
+import { ListTileComponent } from './components/list-tile/list-tile.component';
+import { SingleCityLiComponent } from './components/single-city-li/single-city-li.component';
+import { AlertComponent } from './components/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -27,12 +28,13 @@ import { ErrorsInterceptor } from './interceptors/errors.interceptor';
     ConvertDtPipe,
     WeatherClassPipe,
     InputComponent,
-    RecentComponent,
     NavbarComponent,
     LoginComponent,
     HomeComponent,
     RegisterComponent,
-    FavsComponent
+    ListTileComponent,
+    SingleCityLiComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
