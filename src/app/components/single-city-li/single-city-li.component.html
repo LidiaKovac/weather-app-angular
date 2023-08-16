@@ -1,0 +1,14 @@
+{{city}}
+<div class="tile__controls">
+
+  <span (click)="loadCity(city)">
+    <i class="bi bi-eye"></i>
+
+  </span>
+  <button *ngIf="!favs.includes(city)" (click)="addFavs(city)">
+    <i class="bi bi-suit-heart"></i> </button>
+  <button *ngIf="favs.includes(city)" (click)="removeFavs(city)">
+    <i class="bi bi-suit-heart-fill"></i>
+
+  </button>
+</div>

@@ -5,3 +5,22 @@
 
   }
 }
+
+@media screen and (max-width: 1200px) {
+  :host {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 700px) {
+  :host {
+    width: 80%;
+    padding: 20px;
+  }
+}
+
+
+@media screen and (max-width: 400px) {
+  :host {
+    width: 90%;
+  }
+}

@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  span {
+    margin-inline-end: 10px;
+  }
+  button {
+    background-color: lighten(rgb(255, 0, 132), 45%);
+    border: none;
+    aspect-ratio: 1/1;
+
+    i {
+      font-size: 20px;
+      color: rgb(255, 0, 132);
+    }
+  }
+}
