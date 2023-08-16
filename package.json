@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "dev": "concurrently \"npm run config && ng serve -o\" \"npm run backend\"",
-    "start": "npm run config && ng build --configuration production",
+    "start": "npm run config && ng build --configuration production && ng s --configuration production",
     "build": "npm run config && ng build",
     "watch": "ng build --watch --configuration development",
     "backend": "json-server-auth --watch db.json --port 3000",
