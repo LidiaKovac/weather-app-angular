@@ -1,12 +1,12 @@
 # Weather App - Angular
 ## Design
 
-![design](https://imgur.com/fzDHpqE.png)
+![design](https://imgur.com/stIPvMa.png)
 
 ## Branches: 
 
 - The master branch is the branch that uses json-server
-- The demo branch is the branch made for production, it uses my own API. 
+- The demo branch is the branch made for [THIS PRODUCTION DEMO](https://angular-weather-app-epicode.netlify.app), it uses my own API. 
 
 The functionalities are exactly the same, but the demo branch had been added to allow me to ship the app to production, which is not possible with json-server.
 
