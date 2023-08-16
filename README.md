@@ -5,10 +5,20 @@
 
 ## Branches: 
 
-- The master branch is the branch that uses json-server
-- The demo branch is the branch made for <a href='https://angular-weather-app-epicode.netlify.app' target='_blank'> THIS PRODUCTION DEMO </a>, it uses my own API. 
+- The `master` branch is the branch that uses `json-server`
+- The `demo` branch is the branch made for <a href='https://angular-weather-app-epicode.netlify.app' target='_blank'> THIS PRODUCTION DEMO </a>, it uses my own API. 
 
-The functionalities are exactly the same, but the demo branch had been added to allow me to ship the app to production, which is not possible with json-server.
+The functionalities are exactly the same, but the demo branch had been added to allow me to ship the app to production, which is not possible with `json-server`.
+
+### To run locally: `npm i` && `npm run dev` => only works on the `master` branch. 
+The `dev` command also starts json-server as well as setups the env file. 
+
+YOU WILL NEED A .env FILE IN YOUR ROOT PROJECT CONTAINING THE API KEY FOR THE WEATHER API. 
+
+The syntax is as follows: 
+```
+API_KEY = key here, no quotes
+```
 
 ## Angular README
 
