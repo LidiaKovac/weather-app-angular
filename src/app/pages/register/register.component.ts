@@ -9,21 +9,18 @@ import { Router } from '@angular/router';
 export class RegisterComponent {
   user: User = {
     name: "",
+    lastName: "",
     email: "",
     password: "",
+    passwordConfirm: "",
     favs: []
   }
   constructor(private auth: AuthService, private router: Router) { }
 
   register(ev: Event) {
     ev.preventDefault()
-    this.auth.signup(this.user).subscribe((res) => {
-
-      if (typeof res !== 'string' && res.accessToken) {
-        alert("User registered! Redirecting to home page...")
-        this.router.navigate(["/"])
-      }
-    })
+    const fd = new FormData(ev.target as HTMLFormElement)
+    this.auth.signup(fd).subscribe()
   }
 
 

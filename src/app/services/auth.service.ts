@@ -3,75 +3,86 @@ import { BehaviorSubject } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { tap, Observable } from "rxjs"
+import { tap, Observable } from 'rxjs';
 import { Auth, User, lsAuth } from '../interfaces/user/user.interface';
 import { Router } from '@angular/router';
-
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private isLogged$ = new BehaviorSubject<boolean>(false);
+  private isLogged$ = new BehaviorSubject<boolean>(true);
   loggedStatus = this.isLogged$.asObservable();
-
-  url: string = environment["BE_URL"];
+  loggedUser = new BehaviorSubject<User>({} as User)
+  // url: string = environment['BE_URL'];
   jwtSrv = new JwtHelperService();
 
-  constructor(private http: HttpClient, private router:Router) {
-    this.verifyLogin()
+  constructor(private http: HttpClient, private router: Router) {
+    this.verifyLogin();
   }
 
-  login(cred: Auth) {
-    return this.http.post<lsAuth>(`${environment["BE_URL"]}login`, cred)
+  login(cred: FormData) {
+    return this.http
+      .post(`${environment['BE_URL']}login`, cred, {
+        observe: 'response',
+        responseType: 'text',
+      })
       .pipe(
         tap((res) => {
-          if (res.accessToken) {
-            this.setLocalStorage("weather-login", res)
-            this.isLogged$.next(res.accessToken ? true : false)
-            //routing here
-          } else {
-            //error handling
+          if (res.headers.get('token')) {
+            this.setLocalStorage('weather-login', res.headers.get('token'));
+            this.isLogged$.next(true);
+            this.router.navigate(['/']);
           }
         })
-      )
+      );
   }
 
-  signup(cred: User) {
-    return this.http.post<lsAuth | string>(`${environment["BE_URL"]}`, cred)
+  signup(cred: FormData) {
+    return this.http
+      .post(`${environment['BE_URL']}`, cred, { responseType: 'text' })
       .pipe(
         tap(() => {
-          //show success message
-          //route to login
+          alert('User registered! Redirecting to home page...');
+          this.router.navigate(['/']);
         })
-      )
+      );
   }
-
 
   logout() {
-    localStorage.removeItem("weather-login")
-    this.isLogged$.next(false)
-    this.router.navigate(["/login"])
+    localStorage.removeItem('weather-login');
+    console.log("not logged!")
+
+    this.isLogged$.next(false);
+    this.router.navigate(['/login']);
   }
 
-
-  get getLoginData():lsAuth | false {
-    const ls = JSON.parse(localStorage.getItem("weather-login")!) as lsAuth | null
-    if (ls) return ls
-    else return false
+  get getLoginData(): string | false {
+    const ls = (localStorage.getItem('weather-login')!) as
+      | string
+      | null;
+    if (ls) return ls;
+    else return false;
   }
 
   verifyLogin() {
-    const data = this.getLoginData
-    if (data && data.accessToken) {
-      const isExpired = this.jwtSrv.isTokenExpired(data.accessToken)
-      this.isLogged$.next(!isExpired)
+    const data = this.getLoginData;
+    if (data) {
+      console.log(data)
+      this.http.get<User>(`${environment['BE_URL']}me`, {
+        headers: {
+          authorization: data,
+        },
+      }).subscribe(res => {
+        this.loggedUser.next(res)
+        this.isLogged$.next(true)
+      })
     } else {
-      this.isLogged$.next(false)
+      this.isLogged$.next(false);
     }
   }
 
-  private setLocalStorage(key: string, value: unknown) {
-    localStorage.setItem(key, JSON.stringify(value))
+  private setLocalStorage(key: string, value: any) {
+    localStorage.setItem(key, value);
   }
 }

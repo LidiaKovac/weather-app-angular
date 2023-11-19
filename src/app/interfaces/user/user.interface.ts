@@ -1,6 +1,8 @@
 export interface User {
   name:     string
+  lastName:     string
   password: string
+  passwordConfirm: string
   email:    string
   favs:     string[]
   _id?: string

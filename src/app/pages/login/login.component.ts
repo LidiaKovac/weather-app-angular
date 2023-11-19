@@ -15,9 +15,9 @@ export class LoginComponent {
 
   login(ev: Event) {
     ev.preventDefault()
-    this.auth.login(this.cred).subscribe(res => {
-      if(res.accessToken) {
-
+    const fd = new FormData(ev.target as HTMLFormElement)
+    this.auth.login(fd).subscribe(res => {
+      if(res) {
         this.router.navigate(["/"])
         const target = ev.target as HTMLFormElement
         target.reset()
