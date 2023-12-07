@@ -26,8 +26,9 @@ export class AuthService {
     return this.http.post<lsAuth>(`${this.url}login`, cred)
       .pipe(
         tap((res) => {
+          console.log(res)
           if (res.accessToken) {
-            this.setLocalStorage("weather-login", res)
+            this.setLocalStorage("weather-login-local", res)
             this.isLogged$.next(res.accessToken ? true : false)
             //routing here
           } else {
@@ -38,25 +39,26 @@ export class AuthService {
   }
 
   signup(cred: User) {
-    return this.http.post<lsAuth | string>(`${this.url}`, cred)
+    return this.http.post<lsAuth | string>(`${this.url}/register`, cred)
       .pipe(
         tap(() => {
           //show success message
           //route to login
+          this.router.navigate(["/"])
         })
       )
   }
 
 
   logout() {
-    localStorage.removeItem("weather-login")
+    localStorage.removeItem("weather-login-local")
     this.isLogged$.next(false)
     this.router.navigate(["/login"])
   }
 
 
   get getLoginData():lsAuth | false {
-    const ls = JSON.parse(localStorage.getItem("weather-login")!) as lsAuth | null
+    const ls = JSON.parse(localStorage.getItem("weather-login-local")!) as lsAuth | null
     if (ls) return ls
     else return false
   }

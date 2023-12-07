@@ -20,6 +20,17 @@
         "Portland"
       ],
       "id": 2
+    },
+    {
+      "email": "lidia@new",
+      "password": "$2a$10$xHJPJ59V1YNQuiiK60/V5edOK0gHvfSdcyjUWOmh9W2mCTqoCPh0C",
+      "name": "Lidia2",
+      "favs": [
+        "Genoa",
+        "Rome",
+        "Milan"
+      ],
+      "id": 3
     }
   ]
 }

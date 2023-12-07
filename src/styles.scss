@@ -7,9 +7,14 @@
 * {
   font-family: Helvetica, Arial, sans-serif;
 }
+*,
+* * {
+  color: darken($cerulean, 15%);
+  box-sizing: border-box;
+}
 body {
-  min-height: 100vh;
-
+  // min-height: 100vh;
+  height: fit-content;
   background-image: url("./assets/10844785.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -18,7 +23,4 @@ body {
 
   margin: 0px;
 }
-* , * *  {
-  color: darken($cerulean, 15%);
-  box-sizing: border-box;
-}
+
